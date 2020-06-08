@@ -1,0 +1,145 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+.invalid-feedback{
+    padding: 5px;
+    color: #731010;
+}
+.login-section {
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: center;
+    height: 100%;
+    background-image: linear-gradient(45deg, #5a6d4d6e, #4899c3),
+    url('../images/admin-login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.login-section .login-box {
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0px 2px 15px #283b4096;
+    box-shadow: inset 0px 2px 15px #283b4096;
+    position: relative;
+    padding: 30px;
+    background: #313649ab;
+    min-width: 290px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border: 3px solid #3c5a71;
+}
+.login-section .login-box .brand {
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    text-align: center;
+    max-width: 300px;
+    word-break: break-all;
+    color: #fff;
+    width: 100%;
+    text-transform: uppercase;
+}
+.login-section .login-box .brand .brand-text {
+    margin: 0;
+    font-size: 2rem;
+    text-align-last: unset;
+    max-width: 300px;
+    word-break: break-all;
+    color: #cacaca;
+}
+.login-section .login-box .register-link {
+    text-align: center;
+    text-transform: capitalize;
+    position: absolute;
+    bottom: -35px;
+    color: #bfeaff;
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 12px;
+    margin: 0;
+}
+.login-section .login-box .register-link:hover a {
+    color: #a5ea00;
+}
+.login-section .login-box .register-link::first-letter {
+    text-transform: capitalize;
+}
+.login-section .login-box .register-link a {
+    color: #fff;
+    margin-left: 5px;
+}
+.login-section .login-box .login-element {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+}
+.login-section .login-box .login-element .item-rows {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+}
+.login-section .login-box .login-element .item-rows label {
+    font-size: 14px;
+    color: #bdbdbd;
+    margin-bottom: 5px;
+    font-weight: lighter;
+    font-family: sans-serif;
+}
+.login-section .login-box .login-element .item-rows .form-item {
+    height: 40px;
+    padding: 10px;
+    color: #cacaca;
+    outline: 0;
+    border-radius: 4px;
+    border: 0;
+    background:#b3b3b36b;
+}
+.login-section .login-box .login-element .item-rows .form-item:focus {
+    outline: 1px solid #a0ca3d;
+    background: #050a0c29;
+    color: #fff;
+}
+.login-section .login-box .login-element .item-rows .form-item::placeholder {
+    color: lightgrey;
+}
+.login-section .login-box .login-element .item-rows .error {
+    color: #fb786e;
+    padding: 4px 3px;
+}
+.login-section .login-box .login-element .item-rows .error::first-letter {
+    text-transform: capitalize;
+}
+.login-section .login-box .login-element .item-rows .login-btn {
+    margin-top: 5px;
+    background: #a0ca3d;
+    text-transform: uppercase;
+    border: 0;
+    padding: 13px;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    letter-spacing: 2px;
+}
+.login-section .login-box .login-element .item-rows .login-btn:hover {
+    background: #a8b52d;
+    color: #fff;
+}
+ 
