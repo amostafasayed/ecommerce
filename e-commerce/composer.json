@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.1.3",
+        "php": "^7.3",
         "aws/aws-sdk-php": "^3.137",
         "beyondcode/laravel-websockets": "^1.3",
         "bumbummen99/shoppingcart": "^2.8",
