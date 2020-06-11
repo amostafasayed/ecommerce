@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Cart;
 use Illuminate\Support\Facades\DB;
+use Laravel\Socialite\Facades\Socialite;
+use Exception;
+
+
+
 
 class LoginController extends Controller
 {
@@ -109,4 +114,45 @@ class LoginController extends Controller
             }
         }
     }
+
+    public function redirect()
+    {
+
+          return Socialite::driver('facebook')->redirect();
+
+    }
+    public function callback($provider)
+    {
+        try {
+            $user = Socialite::driver($provider)->user();
+            $input['name'] = $user->getName();
+            $input['email'] = $user->getEmail();
+            $input['provider'] = $provider;
+            $input['provider_id'] = $user->getId();
+
+            $authUser = $this->findOrCreate($input);
+            Auth::loginUsingId($authUser->id);
+
+            return redirect()->route('home');
+
+
+        } catch (Exception $e) {
+
+            return redirect('auth/'.$provider);
+
+        }
+    }
+    public function findOrCreate($input){
+        $checkIfExist = User::where('provider',$input['provider'])
+            ->where('provider_id',$input['provider_id'])
+            ->first();
+
+        if($checkIfExist){
+            return $checkIfExist;
+        }
+
+        return User::create($input);
+    }
+
+
 }

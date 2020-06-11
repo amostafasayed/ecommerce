@@ -2,6 +2,7 @@
 use Illuminate\Contracts\Session\Session;
 
 Route::middleware(['init'])->group(function () {
+
     Route::redirect('/home', '/user-home')->name('home');
     Route::get('/', 'HomeDataController@index')->name('mainHome');
     Route::resource('/bid', 'BidController');
@@ -107,8 +108,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-
-
+Route::get('facebook', function () {
+    return view('facebook');
+});
+Route::get('auth/facebook', 'Auth\LoginController@redirect');
+Route::get('auth/facebook/callback', 'Auth\LoginController@redirect@callback');
 
 Route::get('/set', function (){
     $auctions=\App\Auction::all();

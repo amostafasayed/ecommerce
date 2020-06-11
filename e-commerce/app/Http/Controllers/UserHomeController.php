@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+
 class UserHomeController extends Controller
 {
     use  Districts;
@@ -252,4 +253,5 @@ class UserHomeController extends Controller
         }
 
     }
+
 }

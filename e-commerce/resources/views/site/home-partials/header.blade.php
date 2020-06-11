@@ -81,6 +81,12 @@
                                     New? <a href="/#sign-up">Sign Up</a>
                                 </div>
                             </div>
+                            <div>
+                                <a href="{{ url('auth/facebook') }}" class="btn btn-primary">
+                                    <i class="fa fa-facebook"></i>Login With Facebook
+                                </a>
+                            </div>
+
                         </div>
 
                     </form>
