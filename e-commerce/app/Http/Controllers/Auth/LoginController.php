@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Auth\Authenticatable;
 use phpDocumentor\Reflection\Types\Null_;
 
@@ -126,61 +127,50 @@ class LoginController extends Controller
     }
     public function callback()
     {
-
-
-
-
-
         try {
             $fbuser = Socialite::driver('facebook')->user();
             $user=DB::table('users')
                 ->select('id')
                 ->where('email',$input['email'] = $fbuser->getEmail())
                 ->first();
-            $input['name'] = $fbuser->getName();
-            $input['email'] = $fbuser->getEmail();
-//            $input['provider'] = $provider;
-            $input['provider_id'] = $fbuser->getId();
+                $input['name'] = $fbuser->getName();
+                $input['email'] = $fbuser->getEmail();
+//              $input['provider'] = $provider;
+                $input['facebook'] = $fbuser->getId();
 
             if($user==Null)
             {
-                dd("You dont exist");
+
+                $user = User::create([
+                    'name' => $input['name'],
+                    'username' => $input['name'],
+                    'email' => $input['email'],
+                    'password' => Hash::make($input['facebook']),
+
+                    'credit_balance' => 5,
+                    'singUp_credit' => 5,
+
+                ]);
+
+                Auth::loginUsingId($user->id);
+                return redirect($this->redirectTo);
             }
             else{
 
-
-
-               Auth::loginUsingId($user->id);
+                Auth::loginUsingId($user->id);
                return redirect($this->redirectTo);
-
 
                 }
 
-
-
-
-//            $authUser = $this->findOrCreate($input);
+//           $authUser = $this->findOrCreate($input);
 //            Auth::loginUsingId($authUser->id);
 
-
-
-
-        } catch (Exception $e) {
+        }
+        catch (Exception $e) {
 
             return redirect('/');
 
         }
-    }
-    public function findOrCreate($input){
-        $checkIfExist = User::where('provider',$input['provider'])
-            ->where('provider_id',$input['provider_id'])
-            ->first();
-
-        if($checkIfExist){
-            return $checkIfExist;
-        }
-
-        return User::create($input);
     }
 
 
