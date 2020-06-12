@@ -24,6 +24,7 @@ class UserHomeController extends Controller
     use  Districts;
     public function index()
     {
+
         if(!auth()->user()){
             return redirect('/login');
         }

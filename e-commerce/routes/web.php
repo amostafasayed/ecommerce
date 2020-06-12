@@ -44,7 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/generate-invoice/{id}', 'PaymentController@generateCreditInvoice');
     Route::get('/order-invoice/{order_no}', 'PaymentController@generateOrderInvoice');
 });
-
+    Route::get('auth/facebook', 'Auth\LoginController@redirect');
+    Route::get('auth/facebook/callback', 'Auth\LoginController@callback');
     Route::get('/payment-confirmation', 'PaymentController@paymentConfirmation');
     Route::post('/make-payment', 'PaymentController@makePayment');
     Route::get('/credit/make-payment', 'PaymentController@makeCreditPayment');
@@ -108,11 +109,11 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
-Route::get('facebook', function () {
-    return view('facebook');
-});
-Route::get('auth/facebook', 'Auth\LoginController@redirect');
-Route::get('auth/facebook/callback', 'Auth\LoginController@redirect@callback');
+//Route::get('facebook', function () {
+//    return view('facebook');
+//});
+//Route::get('auth/facebook', 'Auth\LoginController@redirect');
+//Route::get('auth/facebook/callback', 'Auth\LoginController@callback');
 
 Route::get('/set', function (){
     $auctions=\App\Auction::all();

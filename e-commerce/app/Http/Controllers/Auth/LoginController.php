@@ -10,6 +10,9 @@ use Cart;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
+use App\User;
+use Illuminate\Contracts\Auth\Authenticatable;
+use phpDocumentor\Reflection\Types\Null_;
 
 
 
@@ -121,24 +124,50 @@ class LoginController extends Controller
           return Socialite::driver('facebook')->redirect();
 
     }
-    public function callback($provider)
+    public function callback()
     {
+
+
+
+
+
         try {
-            $user = Socialite::driver($provider)->user();
-            $input['name'] = $user->getName();
+            $fbuser = Socialite::driver('facebook')->user();
+            $user=DB::table('users')
+                ->select('id')
+                ->where('email',$input['email'] = $fbuser->getEmail())
+                ->first();
+
+
+            if($user==Null)
+            {
+                dd("You dont exist");
+            }
+            else{
+
+
+
+               Auth::loginUsingId($user->id);
+               return redirect($this->redirectTo);
+
+
+                }
+          $input['name'] = $user->getName();
             $input['email'] = $user->getEmail();
-            $input['provider'] = $provider;
+//            $input['provider'] = $provider;
             $input['provider_id'] = $user->getId();
 
-            $authUser = $this->findOrCreate($input);
-            Auth::loginUsingId($authUser->id);
 
-            return redirect()->route('home');
+
+//            $authUser = $this->findOrCreate($input);
+//            Auth::loginUsingId($authUser->id);
+
+
 
 
         } catch (Exception $e) {
 
-            return redirect('auth/'.$provider);
+            return redirect('/');
 
         }
     }
