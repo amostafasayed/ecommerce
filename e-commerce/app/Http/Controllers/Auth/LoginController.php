@@ -137,7 +137,10 @@ class LoginController extends Controller
                 ->select('id')
                 ->where('email',$input['email'] = $fbuser->getEmail())
                 ->first();
-
+            $input['name'] = $fbuser->getName();
+            $input['email'] = $fbuser->getEmail();
+//            $input['provider'] = $provider;
+            $input['provider_id'] = $fbuser->getId();
 
             if($user==Null)
             {
@@ -152,10 +155,7 @@ class LoginController extends Controller
 
 
                 }
-          $input['name'] = $user->getName();
-            $input['email'] = $user->getEmail();
-//            $input['provider'] = $provider;
-            $input['provider_id'] = $user->getId();
+
 
 
 
